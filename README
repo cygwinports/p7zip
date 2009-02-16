@@ -1,0 +1,168 @@
+p7zip
+-------------------------------------------
+p7zip is a port of the Windows programs 7z.exe and 7za.exe provide by 
+7-zip.  7-zip is a file archiver with the highest compression ratio.
+
+Runtime requirements:
+  cygwin-1.5.25-15
+
+Build requirements:
+  binutils-20080523-1
+  cygport-0.3.11-1
+  gcc-core-3.4.4-3
+  gcc-g++-3.4.4-3
+  make-3.81-1
+
+Canonical homepage:
+  http://p7zip.sourceforge.net/
+
+Canonical download:
+  http://downloads.sourceforge.net/p7zip/
+
+-------------------------------------------
+
+Build instructions:
+  unpack p7zip-4.58-1-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./p7zip-4.58-1.cygport all
+
+This will create:
+  /usr/src/p7zip-4.58-1-src.tar.bz2
+  /usr/src/p7zip-4.58-1.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /usr/bin/7z -> 7za.exe
+  /usr/bin/7za.exe
+  /usr/bin/7zr.exe
+  /usr/share/doc/p7zip-4.58/7zC.txt
+  /usr/share/doc/p7zip-4.58/7zFormat.txt
+  /usr/share/doc/p7zip-4.58/ChangeLog
+  /usr/share/doc/p7zip-4.58/Methods.txt
+  /usr/share/doc/p7zip-4.58/README
+  /usr/share/doc/p7zip-4.58/TODO
+  /usr/share/doc/p7zip-4.58/copying.txt
+  /usr/share/doc/p7zip-4.58/history.txt
+  /usr/share/doc/p7zip-4.58/html/commands/add.htm
+  /usr/share/doc/p7zip-4.58/html/commands/delete.htm
+  /usr/share/doc/p7zip-4.58/html/commands/extract.htm
+  /usr/share/doc/p7zip-4.58/html/commands/extract_full.htm
+  /usr/share/doc/p7zip-4.58/html/commands/index.htm
+  /usr/share/doc/p7zip-4.58/html/commands/list.htm
+  /usr/share/doc/p7zip-4.58/html/commands/style.css
+  /usr/share/doc/p7zip-4.58/html/commands/test.htm
+  /usr/share/doc/p7zip-4.58/html/commands/update.htm
+  /usr/share/doc/p7zip-4.58/html/exit_codes.htm
+  /usr/share/doc/p7zip-4.58/html/index.htm
+  /usr/share/doc/p7zip-4.58/html/style.css
+  /usr/share/doc/p7zip-4.58/html/switches/ar_exclude.htm
+  /usr/share/doc/p7zip-4.58/html/switches/ar_include.htm
+  /usr/share/doc/p7zip-4.58/html/switches/ar_no.htm
+  /usr/share/doc/p7zip-4.58/html/switches/charset.htm
+  /usr/share/doc/p7zip-4.58/html/switches/email.htm
+  /usr/share/doc/p7zip-4.58/html/switches/exclude.htm
+  /usr/share/doc/p7zip-4.58/html/switches/include.htm
+  /usr/share/doc/p7zip-4.58/html/switches/index.htm
+  /usr/share/doc/p7zip-4.58/html/switches/large_pages.htm
+  /usr/share/doc/p7zip-4.58/html/switches/list_tech.htm
+  /usr/share/doc/p7zip-4.58/html/switches/method.htm
+  /usr/share/doc/p7zip-4.58/html/switches/output_dir.htm
+  /usr/share/doc/p7zip-4.58/html/switches/overwrite.htm
+  /usr/share/doc/p7zip-4.58/html/switches/password.htm
+  /usr/share/doc/p7zip-4.58/html/switches/recurse.htm
+  /usr/share/doc/p7zip-4.58/html/switches/sfx.htm
+  /usr/share/doc/p7zip-4.58/html/switches/stdin.htm
+  /usr/share/doc/p7zip-4.58/html/switches/stdout.htm
+  /usr/share/doc/p7zip-4.58/html/switches/stop_switch.htm
+  /usr/share/doc/p7zip-4.58/html/switches/style.css
+  /usr/share/doc/p7zip-4.58/html/switches/type.htm
+  /usr/share/doc/p7zip-4.58/html/switches/update.htm
+  /usr/share/doc/p7zip-4.58/html/switches/volume.htm
+  /usr/share/doc/p7zip-4.58/html/switches/working_dir.htm
+  /usr/share/doc/p7zip-4.58/html/switches/yes.htm
+  /usr/share/doc/p7zip-4.58/html/syntax.htm
+  /usr/share/doc/p7zip-4.58/lzma.txt
+  /usr/share/doc/p7zip-4.58/lzma_format.txt
+  /usr/share/doc/p7zip-4.58/readme.txt
+  /usr/share/doc/p7zip-4.58/unRarLicense.txt
+  /usr/share/man/man1/7z.1.gz
+  /usr/share/man/man1/7za.1.gz
+  /usr/share/man/man1/7zr.1.gz
+
+------------------
+
+Port Notes:
+
+----- version 4.58-1 -----
+Version bump.
+
+----- version 4.57-1 -----
+Version bump.
+
+----- version 4.55-1 -----
+Version bump.
+
+----- version 4.53-1 -----
+Version bump.
+
+----- version 4.51-1 -----
+Version bump.
+
+----- version 4.49-1 -----
+Version bump.
+
+----- version 4.48-1 -----
+Version bump.
+
+----- version 4.47-1 -----
+Version bump.
+
+----- version 4.45-1 -----
+Version bump.
+
+----- version 4.44-1 -----
+Version bump.
+
+----- version 4.43-1 -----
+Version bump.
+
+----- version 4.42-1 -----
+Version bump.
+
+----- version 4.39-1 -----
+Version bump; includes new 7zr command.
+
+----- version 4.37-1 -----
+Version bump.
+Source package is now cygport driven.
+
+----- version 4.33-1 -----
+Version bump.
+
+----- version 4.30-1 -----
+Version bump.
+
+----- version 4.29-1 -----
+Version bump.
+
+----- version 4.27-1 -----
+Version bump.
+
+----- version 4.20-1 -----
+Upstream version bump; man pages now included.
+
+----- version 4.14-1 -----
+New upstream version; only the standalone 7za is now built.
+Upstream changed their versioning to correspond with the Windows 7zip 
+version, hence the large jump in version number.
+
+----- version 0.91-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://sourceware.org/cygwinports/

@@ -1,0 +1,6 @@
+category: Archive Utils
+requires: cygwin
+sdesc: "7-zip compression utility"
+ldesc: "p7zip is a port of the Windows programs 7z.exe and 7za.exe 
+provide by 7-zip.  7-zip is a file archiver with the highest 
+compression ratio."

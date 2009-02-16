@@ -1,0 +1,30 @@
+DESCRIPTION="Portable 7-zip compression tool"
+HOMEPAGE="http://p7zip.sourceforge.net/"
+SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}_src_all.tar.bz2"
+SRC_DIR=${PN}_${PV}
+
+src_compile() {
+	lndirs
+	cd ${B}
+	ln -sfn makefile.cygwin makefile.machine
+	cygmake -j1 7za 7zr OPTFLAGS="${CXXFLAGS}"
+}
+
+src_test() {
+	cd ${B}
+	make test || error "7za tests failed"
+	make test_7zr || error "7zr tests failed"
+}
+
+src_install() {
+	cd ${B}
+	dobin bin/7za.exe bin/7zr.exe
+	dosym 7za.exe /usr/bin/7z
+
+	cd ${S}
+	doman man1/7za.1 man1/7zr.1
+	echo ".so 7za.1" > ${D}/usr/share/man/man1/7z.1
+
+	dodoc DOCS/*.txt
+	cp -r DOCS/MANUAL ${D}/usr/share/doc/${P}/html
+}

@@ -1,0 +1,66 @@
+WX_VERSION=2.8
+inherit wxwidgets
+
+CATEGORY="Archive"
+SUMMARY="Portable Implementation of 7-Zip utilities"
+DESCRIPTION="p7zip is a port of 7-Zip programs for POSIX systems.
+7-Zip is a file archiver with the highest compression ratio."
+HOMEPAGE="http://www.7-zip.org/"
+SRC_URI="mirror://sourceforge/p7zip/p7zip_${PV}_src_all.tar.bz2"
+SRC_DIR="p7zip_${PV}"
+
+# derived from http://patch-tracking.debian.net/
+#  /patch/series/dl/p7zip/9.04~dfsg.1-1/
+PATCH_URI="
+	01_makefile_9.20.1.patch
+	02_man_9.20.1.patch
+	03_respect-umask-partial_9.20.1.patch
+	04_install_sh_9.20.1.patch
+"
+
+PKG_NAMES="${PN} ${PN}-gui"
+p7zip_CONTENTS="--exclude=7zFM* --exclude=7zG* --exclude=Lang --exclude=p7zipForFilemanager
+                usr/bin/ usr/lib/p7zip/ usr/share/doc/ usr/share/man/"
+p7zip_gui_CONTENTS="etc/ usr/bin/7zFM usr/bin/7zG usr/bin/p7zipForFilemanager
+                    usr/lib/p7zip/7zFM.exe usr/lib/p7zip/7zG.exe usr/lib/p7zip/Lang/
+                    usr/share/applications/ usr/share/icons/ usr/share/kde4/"
+p7zip_gui_SUMMARY="7-Zip File Manager and desktop integration utilities"
+p7zip_gui_REQUIRES=${PN}
+
+src_compile() {
+	lndirs
+	cd ${B}
+	rm -f makefile.machine
+	cp makefile.cygwin_asm makefile.machine
+	cygmake depend
+	cygmake all4 OPTFLAGS="${CXXFLAGS}"
+}
+
+src_test() {
+	cd ${B}
+	make test
+	make test_7z
+	make test_7zr
+}
+
+src_install() {
+	cd ${B}
+	DESTDIR=${D} ./install.sh
+	sed -i -e "s|${D}||g" ${D}/usr/bin/*
+
+	dobin ${S}/contrib/gzip-like_CLI_wrapper_for_7z/p7zip
+	doman ${S}/contrib/gzip-like_CLI_wrapper_for_7z/man1/p7zip.1
+	newdoc ${S}/contrib/gzip-like_CLI_wrapper_for_7z/README p7zip-script.README
+
+	for i in 16 32
+	do
+		insinto /usr/share/icons/hicolor/${i}x${i}/apps
+		newins ${S}/GUI/p7zip_${i}.png p7zip.png
+	done
+	make_desktop_entry 7zFM "7-Zip File Manager" p7zip "GTK;Utility;Archiving;Compression" "" "MimeType=application/x-7z-compressed;"
+
+	insinto /usr/share/kde4/services/ServiceMenus
+	doins ${S}/GUI/kde4/*.desktop
+
+	keepdir /usr/lib/p7zip/Codecs
+}

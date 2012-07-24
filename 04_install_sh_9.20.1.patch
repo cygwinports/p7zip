@@ -1,0 +1,45 @@
+--- origsrc/p7zip_9.20.1/install.sh	2011-03-16 14:32:56.000000000 -0500
++++ src/p7zip_9.20.1/install.sh	2012-07-24 02:09:30.183274400 -0500
+@@ -9,15 +9,14 @@ installShared()
+     cp bin/${prg} "${DEST_DIR}${DEST_SHARE}/${prg}"
+     chmod 777 "${DEST_DIR}${DEST_SHARE}/${prg}"
+     strip     "${DEST_DIR}${DEST_SHARE}/${prg}"
+-    chmod 555 "${DEST_DIR}${DEST_SHARE}/${prg}"
+     echo "#! /bin/sh" > "${DEST_DIR}${DEST_BIN}/${prg}"
+     echo "\"${DEST_SHARE}/${prg}\" \"\$@\"" >> "${DEST_DIR}${DEST_BIN}/${prg}"
+-    chmod 555 "${DEST_DIR}${DEST_BIN}/${prg}"
++    chmod 755 "${DEST_DIR}${DEST_BIN}/${prg}"
+   fi
+ }
+ 
+ # global install
+-DEST_HOME=/usr/local
++DEST_HOME=${DESTDIR}/usr
+ # for testing 
+ # DEST_HOME=${HOME}/INSTALL/usr/local
+ DEST_BIN=${DEST_HOME}/bin
+@@ -178,8 +177,6 @@ then
+   echo "- installing HTML help in ${DEST_DIR}${DEST_SHARE_DOC}/DOCS"
+   mkdir -p "${DEST_DIR}${DEST_SHARE_DOC}"
+   cp -r DOCS "${DEST_DIR}${DEST_SHARE_DOC}/DOCS"
+-  find "${DEST_DIR}${DEST_SHARE_DOC}/DOCS" -type d -exec chmod 555 {} \;
+-  find "${DEST_DIR}${DEST_SHARE_DOC}/DOCS" -type f -exec chmod 444 {} \;
+ fi
+ 
+ use_lang="n"
+@@ -188,7 +185,6 @@ if [ -x bin/7zG ]
+ then
+   use_lang="o"
+   cp GUI/p7zipForFilemanager "${DEST_DIR}${DEST_BIN}/"
+-  chmod 555 "${DEST_DIR}${DEST_BIN}/"
+ fi
+ 
+ if [ -x bin/7zFM ]
+@@ -200,7 +196,5 @@ if [ "${use_lang}" = "o" ]
+ then
+   echo "- installing Lang in ${DEST_DIR}${DEST_SHARE}"
+   cp -r GUI/Lang "${DEST_DIR}${DEST_SHARE}/"
+-  find "${DEST_DIR}${DEST_SHARE}/Lang" -type d -exec chmod 555 {} \;
+-  find "${DEST_DIR}${DEST_SHARE}/Lang" -type f -exec chmod 444 {} \;
+ fi
+ 
